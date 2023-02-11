@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Ups!...  ";
+    //ViewData["Image"] = "/img/background_1.jpg";
+    ViewData["SubtitleHeader"] = "Something gone Wrong.";
+}
+<div class="_container">
+    <p>@ViewData["SubtitleHeader"]</p>
+</div>
+<div class="_container">
+    <div id="win" class="Error">
+        <div class="win_btn">
+            <a class="btn-md" asp-area="" asp-controller="Home" asp-action="Index">Back</a>
+        </div>
+        <h2>ERROR</h2>
+    </div>
+</div>

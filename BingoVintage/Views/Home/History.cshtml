@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BingoVintage.Models.TicketHistory>
+@{
+    ViewData["Title"] = "History";
+    ViewData["SubtitleHeader"] = "Playing History";
+}
+<div class="_container">
+    <p>@ViewData["SubtitleHeader"]</p>
+</div>
+<div class="_containerTable">
+    <div class="table_Title">
+        <div class="table_Header">Ticket Nº</div>
+        <div class="table_Header">Serial</div>
+        <div class="table_Header">Line</div>
+        <div class="table_Header">Bingo</div>
+        <div class="table_Header">Winning Ball</div>
+        <div class="table_Header">Playing Date</div>
+    </div>
+    <div class="_Table">
+    @foreach (var item in Model)
+    {
+        string? line = string.Empty;
+        string? bingo = string.Empty;
+        if (item.Line)
+        {
+            line = "Yes";
+        }
+        else if(item.Bingo)
+        {
+            bingo = "Yes";
+        }
+        <div class="table_Item">@item.TicketNo</div>
+        <div class="table_Item">@item.Identificator</div>
+        <div class="table_Item">@line</div>
+        <div class="table_Item">@bingo</div>
+        <div class="table_Item">@item.BallOfAcert</div>
+        <div class="table_Item">@item.DateOfCreation.ToShortDateString()</div>
+    }
+    </div>
+</div>

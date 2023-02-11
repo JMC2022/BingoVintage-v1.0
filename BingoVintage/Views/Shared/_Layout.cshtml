@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BingoVintage</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <!--Navigation-->
+    <div id="sidebarMenu" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        
+        @if (User.HasClaim (u => u.Value != null ))
+        {
+            <a asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+            <a asp-area="" asp-controller="Home" asp-action="Saloon">Saloon</a>
+        }
+        else
+        {
+            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            <a asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+            <a asp-area="" asp-controller="Home" asp-action="Register">Register</a>       
+        }
+        <a asp-area="" asp-controller="Home" asp-action="Terms">Terms Of Use</a>
+        <a href="https://jmc2022.github.io/" target="_blank" rel="noopener noreferrer">Contact</a>
+    </div>
+    <div id="main">
+        <button class="openbtn" onclick="openNav()"></button>
+    </div>
+
+    <!--Header-->
+    <header>
+    </header>
+
+     @RenderBody()
+
+    <!--Footer-->
+    <footer>
+        <div class="footer">
+            <span>&copy; 2022 - Bingo Vintage&trade; - <a asp-controller="Home" asp-action="Credits">Credits</a></span>
+        </div>
+    </footer>
+    <script src="~/lib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

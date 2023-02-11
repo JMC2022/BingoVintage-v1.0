@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BingoVintage</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <!--Win-->
+    <div id="containerWin" class="_containerWin">
+        @*Here Comes the Winning view*@
+    </div>
+    <!--Navigation-->
+    <div id="sidebarMenu" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <a href="javascript:void(0)" onclick="openMenu()">My Menu</a>
+        <a asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+        <a asp-area="" asp-controller="Home" asp-action="Terms">Terms Of Use</a>
+        <a href="https://jmc2022.github.io/" target="_blank" rel="noopener noreferrer">Contact</a>
+    </div>
+    <div id="main">
+        <button class="openbtn" onclick="openNav()"></button>
+    </div>
+     <!--My Menu-->
+    @{
+        //Url to calling methods from jQuery
+        string url = Url.Action("Ticket", "Home")!.ToString();
+    }
+    <div id="containerMenu" class="_containerM">
+        <div id="myMenu" class="menu">
+            <a id="titleMenu" class="titleMenu"><img src="~/img/Title-Menu.png"/></a>
+            @if (User.IsInRole("Player"))
+            {
+                <a id="titleChoose">Select your Ticket (1 to 4)</a>
+                <div id="_choose" class="_choose">
+                    <p id="choose1" href="javascript:void(0)" onclick="choose(1, '@url')"><img src="~/img/choose-1 .png"/></p>
+                    <p id="choose2" href="javascript:void(0)" onclick="choose(2, '@url')"><img src="~/img/choose-2 .png"/></p>
+                    <p id="choose3" href="javascript:void(0)" onclick="choose(3, '@url')"><img src="~/img/choose-3 .png"/></p>
+                    <p id="choose4" href="javascript:void(0)" onclick="choose(4, '@url')"><img src="~/img/choose-4 .png"/></p>
+                </div>
+            }
+            else if (User.IsInRole("Playing")) 
+            {
+                <a id="titleChoose">Now Paying With</a>
+                int cantT = int.Parse(User.Identities.FirstOrDefault()!.Claims.ElementAt(4).Value);
+                <div id="_choose" class="_choose">
+                    <p id="chooseT"><img src="/img/choose-@cantT .png"/></p>
+                </div>
+            }
+            <a id="history" asp-area="" asp-controller="Home" asp-action="History">View History</a>
+            <a href="javascript:void(0)" onclick="closeMenu()">Close</a>
+        </div>
+     </div>
+    <!--Header-->
+    <header>
+        <!--Here comes BingoBall-->
+        <div id="bB_Container" class="bB_Container">
+            <div id="_bingoBall" class="_bingoBall">
+                @if (User.IsInRole("Playing"))
+                {
+                    <img src="~/img/BingoBallRolling.gif"/>
+                }
+            </div>
+        </div>
+    </header>
+
+     @RenderBody()
+
+    <!--Footer-->
+    <footer>
+        <div class="footer">
+            <span>&copy; 2022 - Bingo Vintage&trade; - <a asp-controller="Home" asp-action="Credits">Credits</a></span>
+        </div>
+    </footer>
+    <script src="~/lib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

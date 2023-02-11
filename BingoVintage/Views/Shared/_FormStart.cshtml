@@ -1,0 +1,46 @@
+﻿@model Usr
+<div class="input_field">
+    <label for="Name" class="form_label">Player Name</label>
+    <input asp-for="Name" type="text" class="form_control" id="Name" aria-describedby="Name" maxlength="45" es required />
+    @Html.ValidationMessageFor(x=>x.Name,"" , new {@class="text_danger"})
+</div>
+<div class="input_field">
+    <label for="Email" class="form_label">Email</label>
+    <input asp-for="Email" type="text" class="form_control" id="Email" aria-describedby="Email" maxlength="76" es required />
+    @Html.ValidationMessageFor(x=>x.Email,"" , new {@class="text_danger"})
+</div>
+<!--Send Msg to Usr-->
+@if (ViewData["Message"] != null)
+{
+    <div class="message">
+        <label for="Message" class="form_label">Message</label>
+        <h2>@ViewData["Message"]</h2>
+    </div>
+}
+<div class="_containerCk">
+    <div class="grid-ck">
+        <div class="form_check">
+            <input asp-for="PlusEighteen" type="checkbox" class="check_input" id="PlusEighteen" required>
+            <label class="check_label" for="PlusEighteen">I´am 18+</label>
+        </div>
+        @if ((string)ViewData["Title"]! == "Login")
+        {
+            <div class="form_check">
+                <input asp-for="RememberLogin" type="checkbox" class="check_input" id="RememberLogin" />
+                <label class="check_label" for="RememberLogin">Remember Me</label>
+            </div>
+        }
+    </div>
+    @if ((string)ViewData["Title"]! == "Login")
+    {
+        <div class="form_btn">
+            <button type="submit" value="Login" class="btn">Login</button>
+        </div>
+    }
+    else
+    {
+        <div class="form_btn">
+            <button type="submit" value="Login" class="btn" asp-action="CreateUsr">Register</button>
+        </div>
+    }
+</div>

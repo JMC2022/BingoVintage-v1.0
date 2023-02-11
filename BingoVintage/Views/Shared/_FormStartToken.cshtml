@@ -1,0 +1,17 @@
+﻿@model Usr
+<div class="input_field">
+    <label for="Email" class="form_label">Email</label>
+    <input asp-for="Email" type="text" class="form_control" id="Email" aria-describedby="Email" maxlength="76" es readonly />
+</div>
+<div class="input_field">
+    <label for="Token" class="form_label">Token</label>
+    <input asp-for="Token" type="text" class="form_control" id="Token" aria-describedby="Token" maxlength="10" required/>
+    @Html.ValidationMessageFor(x=>x.Token,"" , new {@class="text_danger"})
+</div>
+@if (ViewData["Message"] != null)
+{
+    <div class="message">
+        <label for="Message" class="form_label">Message</label>
+        <h2>@ViewData["Message"]</h2>
+    </div>
+}

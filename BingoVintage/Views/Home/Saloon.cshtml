@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "_LayoutSaloon";
+    ViewData["Title"] = "Saloon";
+    ViewData["SubtitleHeader"] = "¡Good Luck!";
+}
+
+<div class="_container" id="_container">
+    @if (User.IsInRole("Playing"))
+    {
+        <p>@ViewData["SubtitleHeader"]</p>
+    }
+</div>
+    
+<div id="saloon" class="_containerT">
+    <div id="grid_ticket" class="grid_ticket">
+        <!--Here Comes a Partial View of tickets from jQuery When Usr is Playing-->
+
+        @if (User.IsInRole("Playing")) //and View "Saloon" when comes from "Home" and Usr is Playing.
+        {
+            <partial name="_Tikets" model="@Model" />
+        }
+    </div>
+    <!--Here comes a Partial View of Bingo Ball from jQuery When Usr is Playing-->
+
+    <partial name="_BingoBall" model="@Model"/>  <!-- and View "Saloon" when comes from "Home" and Usr is Playing.-->
+</div>

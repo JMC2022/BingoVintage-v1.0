@@ -1,0 +1,27 @@
+﻿@model WinningM
+@if (Model.IsBingo)
+{
+    <div id="win" class="win">
+        <div class="win_btn">
+            <a class="btn-w" asp-area="" asp-controller="Home" asp-action="NewGame">New Game</a>
+            <a class="btn-w" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+        </div>
+        <div id="winner" class="winner">
+            <img src="~/img/winning.gif"/>
+            <h1>BINGO</h1>
+        </div>
+    </div>
+}
+else if (Model.IsLine)
+{
+   <div id="win" class="win">
+        <div class="win_btn">
+            <a class="btn-w" id="continue" href="javascript:void(0)" onclick="goOn()">Continue</a>
+            <a class="btn-w" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+        </div>
+          <div id="winner" class="winner">
+            <img src="~/img/winning.gif"/>
+            <h1>¡ LINE !</h1>
+        </div>
+   </div>
+}

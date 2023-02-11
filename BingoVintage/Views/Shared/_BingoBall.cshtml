@@ -1,0 +1,21 @@
+﻿<!--Button "LaunchBall" only available for playing role-->
+<div id="launchB" class="_launchB">
+    @if (User.IsInRole("Playing"))
+    {
+        if ((User.Identities.FirstOrDefault()!.Claims.ElementAt(5).Value) == "Bingo")
+        { 
+            string img_NewGame = $"\"/img/NewGame_btn.png\"";
+            <a id="launch_ball" asp-area="" asp-controller="Home" asp-action="NewGame" class="btn-md" style="background-image: url(@img_NewGame)" ></a>
+        }
+        else
+        {
+            string img_LaunchB = $"\"/img/Launch-btn.png\"";
+            string img_BallN = $"\"/img/Ball-Num.png\"";
+            string url = Url.Action("LaunchBall", "Home")!.ToString();
+            <a id="launch_ball" class="btn-md" onclick="launchBall('@url')" style="background-image: url(@img_LaunchB)" ></a>
+            <a id="ball_number" class="btn-md" style="background-image: url(@img_BallN)" >
+                @*Partial View from jQuery when "Launch" btn is press*@
+            </a>
+        }
+    }
+</div>

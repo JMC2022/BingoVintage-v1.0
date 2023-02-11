@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Welcome to ";
+    @if (User.HasClaim(u=> u.Value != null))
+    {
+        ViewData["SubtitleHeader"] = $"Welcome {User.Identity!.Name!.ToUpperInvariant()}";
+    }
+    else
+    {
+        ViewData["SubtitleHeader"] = "Start Session or Register";
+    }
+}
+<div class="_container">
+    <p>@ViewData["SubtitleHeader"]</p>
+</div>
+<div class="_main"></div>

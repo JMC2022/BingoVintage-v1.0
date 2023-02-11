@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BingoVintage.Models.Ticket>
+
+<!--THIS IS WHAT YOU WAITING FOR-->
+@{
+    int[] ints = { 0,3,6,9,12,15,18,21,24, 1,4,7,10,13,16,19,22,25, 2,5,8,11,14,17,20,23,26 };
+    int[] acerts = {1,4,7,10,13,16,19,22,25, 2,5,8,11,14,17,20,23,26, 3,6,9,12,15,18,21,24,27};
+}
+@foreach (var item in Model)
+{
+    List<Numbers> ListOfNum = new();
+    foreach (var num in item.Numbers)
+    {
+        ListOfNum.Add(num);
+    }
+    int check = 0;
+    <div id="_grid_nums_@item.TicketNo" class="_grid_nums">
+        <div class="_tNumber" id="T_@item.TicketNo">Ticket N° @item.TicketNo</div>
+        <div class="_tIdentificator">@item.Identificator</div>
+        @{  
+            do
+            {
+                int i = ints[check];
+                if (ListOfNum[i].Num == 0)
+                {
+                    <div class="_N@(check+1)" style="background-image: url(../img/icon/Icon-T.png)"></div>
+                }
+                else
+                {
+                    //Refresh Acert When go Home and Return to Saloon
+                    if (ListOfNum[i].Acert)
+                    {
+                        <div class="_N@(check+1)" id="N_@acerts[check]" style="border: 2.2px solid red">@ListOfNum[(int)i].Num</div>
+                    }else
+                    {
+                        <div class="_N@(check+1)" id="N_@acerts[check]">@ListOfNum[(int)i].Num</div>
+                    }
+                }
+                check++;
+            } while (check <= 26);
+        }
+    </div>
+}

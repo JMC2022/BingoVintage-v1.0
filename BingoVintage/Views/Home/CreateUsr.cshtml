@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "New User";
+}
+
+<div class="_container">
+    <div class="grid_layout">
+        <form class="container_form" asp-action="Login">
+            <partial name="_FormStartToken" model="@Model" />
+            <div class="form_btn">
+                <button type="submit" value="Send" class="btn">Send</button>
+            </div>
+        </form>
+    </div>
+</div>
